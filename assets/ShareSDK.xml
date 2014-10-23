@@ -2,11 +2,7 @@
 <DevInfor>
     <!--
     	说明：
-<<<<<<< HEAD
-    	Witing DQF push
-=======
-    	DQF have pushed
->>>>>>> pr/2
+        DQF changed this file
     	1、表格中的第一项
     		<ShareSDK 
         		AppKey="api20" />
