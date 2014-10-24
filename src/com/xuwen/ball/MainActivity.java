@@ -35,8 +35,5 @@ public class MainActivity extends FragmentActivity {
 		trans.replace(R.id.container, new Start(this,w,h)).commit();
 		
 	}
-	protected void onDraw(Canvas c){
-	}
-	
 
 }
