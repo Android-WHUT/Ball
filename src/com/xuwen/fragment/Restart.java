@@ -121,6 +121,4 @@ public class Restart extends Fragment{
 					e.printStackTrace();
 				}
 		   }	
-
-
 }
