@@ -2,13 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bg"
-    android:id="@+id/gameover"  >
-
-
-
-        <Button
+    android:id="@+id/gameover" 
+    android:orientation="vertical" >
+ <Button
             android:id="@+id/Logo1"
             android:layout_width="78dp"
             android:layout_height="46dp"
@@ -16,16 +12,24 @@
             android:layout_marginLeft="12dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/logo_small_2x" />
-        
+
+          <TextView
+              android:id="@+id/score"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:text="SCORE"
+              android:textSize="40sp"
+              android:textColor="#0000FF"
+              android:layout_marginTop="20dp"/>
+
         <Button
             android:id="@+id/restart"
             android:layout_width="177dp"
             android:layout_height="77dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button_restart" />
-
-
 
         <Button
             android:id="@+id/share"
@@ -34,6 +38,5 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/button_share_2x" />
-
 
 </LinearLayout>
