@@ -128,8 +128,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int main=0x7f080000;
     }
     public static final class string {
-        public static final int action_settings=0x7f060044;
-        public static final int app_name=0x7f060043;
+        public static final int action_settings=0x7f060047;
+        public static final int app_name=0x7f060046;
+        public static final int bluetooth=0x7f06003d;
         public static final int cancel=0x7f060000;
         public static final int douban=0x7f06002a;
         public static final int dropbox=0x7f060034;
@@ -139,10 +140,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int finish=0x7f060001;
         public static final int flickr=0x7f060032;
         public static final int foursquare=0x7f06002f;
-        public static final int game_control=0x7f060046;
+        public static final int game_control=0x7f060049;
         public static final int google_plus_client_inavailable=0x7f060013;
         public static final int googleplus=0x7f06002e;
-        public static final int hello_world=0x7f060045;
+        public static final int hello_world=0x7f060048;
         public static final int instagram=0x7f060036;
         public static final int instagram_client_inavailable=0x7f060016;
         public static final int kaixin=0x7f060024;
@@ -155,11 +156,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int linkedin=0x7f06002d;
         public static final int list_friends=0x7f060009;
         public static final int mingdao=0x7f060039;
-        public static final int mingdao_share_content=0x7f06003f;
+        public static final int mingdao_share_content=0x7f060042;
         public static final int multi_share=0x7f060005;
         public static final int neteasemicroblog=0x7f060029;
         public static final int pinterest=0x7f060031;
         public static final int pinterest_client_inavailable=0x7f060015;
+        public static final int pocket=0x7f06003f;
         public static final int pull_to_refresh=0x7f06000b;
         public static final int qq=0x7f060030;
         public static final int qq_client_inavailable=0x7f060014;
@@ -174,10 +176,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int share_completed=0x7f060006;
         public static final int share_failed=0x7f06000a;
         public static final int share_to=0x7f060003;
-        public static final int share_to_mingdao=0x7f060040;
-        public static final int share_to_qq=0x7f06003e;
-        public static final int share_to_qzone=0x7f06003d;
-        public static final int share_to_qzone_default=0x7f060041;
+        public static final int share_to_mingdao=0x7f060043;
+        public static final int share_to_qq=0x7f060041;
+        public static final int share_to_qzone=0x7f060040;
+        public static final int share_to_qzone_default=0x7f060044;
         public static final int sharing=0x7f060002;
         public static final int shortmessage=0x7f060026;
         public static final int sinaweibo=0x7f06001b;
@@ -186,7 +188,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int tencentweibo=0x7f06001c;
         public static final int tumblr=0x7f060033;
         public static final int twitter=0x7f060022;
-        public static final int use_login_button=0x7f060042;
+        public static final int use_login_button=0x7f060045;
         public static final int vkontakte=0x7f060035;
         public static final int website=0x7f060010;
         public static final int wechat=0x7f06001e;
@@ -195,6 +197,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int wechatmoments=0x7f06001f;
         public static final int weibo_oauth_regiseter=0x7f06000f;
         public static final int weibo_upload_content=0x7f060011;
+        public static final int whatsapp=0x7f06003e;
         public static final int yixin=0x7f060037;
         public static final int yixin_client_inavailable=0x7f060017;
         public static final int yixinmoments=0x7f060038;

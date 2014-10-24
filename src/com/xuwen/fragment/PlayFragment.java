@@ -271,7 +271,7 @@ public class PlayFragment extends Fragment{
 		            public void run() {  
 		                isDoubleClick = false;
 		            }  
-		        }, 1000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务  
+		        }, 400); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务  
 		  
 		    } else {  
 		    	gamePause();
