@@ -13,14 +13,15 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/logo_small_2x" />
 
- <TextView
-     android:id="@+id/score"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_gravity="center"
-     android:text="SCORE"
-     android:textSize="30dp"
-      android:layout_marginTop="20dp"/>
+          <TextView
+              android:id="@+id/score"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:text="SCORE"
+              android:textSize="40sp"
+              android:textColor="#0000FF"
+              android:layout_marginTop="20dp"/>
 
         <Button
             android:id="@+id/restart"
@@ -28,8 +29,7 @@
             android:layout_height="77dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@drawable/button_restart"
-            android:onClick="onRestartButtonClick" />
+            android:background="@drawable/button_restart" />
 
         <Button
             android:id="@+id/share"
