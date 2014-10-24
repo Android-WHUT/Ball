@@ -18,9 +18,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 	
 @SuppressLint("ValidFragment")
@@ -45,6 +47,11 @@ public class Restart extends Fragment{
 			View view = inflater.inflate(R.layout.gameover, container,  
     			    false);  
             View v = LayoutInflater.from(getActivity()).inflate(R.layout.gameover, null);
+            
+            String second = getArguments().getString("second");
+            String count = getArguments().getString("count");
+            TextView tv=(TextView)view.findViewById(R.id.score);
+            tv.setText(second+":"+(100-Integer.parseInt(count)));
             
             Button rs = (Button) view.findViewById(R.id.restart);
             Button share = (Button) view.findViewById(R.id.share);

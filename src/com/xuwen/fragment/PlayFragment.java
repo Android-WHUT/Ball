@@ -231,8 +231,13 @@ public class PlayFragment extends Fragment{
 				ballNum.clear();
 				
 				//ËÀÍöºóÌø×ª
+				Restart sf = new Restart(this.getActivity(),w,h);  
+				Bundle bundle = new Bundle();
+                bundle.putString("second",second+"" );  
+                bundle.putString("count",count+"" );
+                sf.setArguments(bundle);  
 				FragmentTransaction transaction = getFragmentManager().beginTransaction();
-	            transaction.replace(R.id.container, new Restart(this.getActivity(),w,h));
+	            transaction.replace(R.id.container, sf);
 	            transaction.commit();
 				
 				return;

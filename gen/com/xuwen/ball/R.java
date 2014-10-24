@@ -115,9 +115,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int play=0x7f090006;
         public static final int rank=0x7f09000b;
         public static final int restart=0x7f090004;
+        public static final int score=0x7f090003;
         public static final int share=0x7f090005;
         public static final int start=0x7f09000a;
-        public static final int textView1=0x7f090003;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
