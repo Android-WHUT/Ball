@@ -247,7 +247,7 @@ public class PlayFragment extends Fragment{
 		
 		
 		private void gameOver(Ball b){
-			if(b.getCurrY() > h-w*3/10){
+			if(b.getCurrY() > h*3/4){
 				//ball_produce.cancel();
 				//ballNum.clear();
 				isGameing = false;
