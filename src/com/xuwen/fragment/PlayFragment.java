@@ -11,13 +11,10 @@ import com.xuwen.base.Bar;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
-import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.PorterDuff.Mode;
 import android.os.Bundle;
@@ -30,6 +27,11 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 @SuppressLint("ValidFragment")
 public class PlayFragment extends Fragment{
@@ -50,11 +52,12 @@ public class PlayFragment extends Fragment{
 		//显示小球的画布，surfaceview
 		private SurfaceView game_interface;
 		private SurfaceHolder sfh;
+		private TextView game_control;
 		
 		private Timer ball_produce;
 		private Factory task;
 		//随机产生小球的计数
-		private int count = 100;
+		private int count = 0;
 		
 		//构造函数的参数
 		private Activity activity;
@@ -64,13 +67,13 @@ public class PlayFragment extends Fragment{
 		private View view;
 		//定义一个Bar对象
 		private Bar bar;
-		private boolean isGameing = true;
-		private boolean isStop = false;
+		private boolean isGameing = false;
+		private boolean isStop = true;
+		private boolean isDoubleClick = false;
+		private Animation mAlphaAnimation;    
 		//游戏进行秒数
 		private int second = -1;
-		
-		private Bitmap pauseBitmap;
-		
+				
 		public PlayFragment(Activity activity ,int w,int h){
 			super();
 			CRASH_BORDER = new Ball(activity).getBallWidth();
@@ -83,7 +86,8 @@ public class PlayFragment extends Fragment{
 			super.onCreate(savedInstanceState);
 			init();
 			
-			view.setOnTouchListener(touch);
+			game_interface.setOnTouchListener(touch);
+			game_control.setOnTouchListener(l);
 		}
 		public View onCreateView(LayoutInflater inflater,ViewGroup container,
 				Bundle savedInstanceState){
@@ -98,6 +102,7 @@ public class PlayFragment extends Fragment{
 			
 			game_interface = (SurfaceView)view.findViewById(R.id.geme_canvas);
 			sfh = game_interface.getHolder();
+			game_control = (TextView) view.findViewById(R.id.game_control);
 			
 			//设置背景透明 	
 			game_interface.setZOrderOnTop(true);
@@ -114,10 +119,6 @@ public class PlayFragment extends Fragment{
 			
 			ball_produce = new Timer();
 			task = new Factory();
-			//启动开始运行
-			ball_produce.schedule(task, newballtime, move_timeGap);
-			pauseBitmap = Bitmap.createBitmap(BitmapFactory.decodeResource(
-					activity.getResources(), R.drawable.pause));
 						
 		}
 		private void changeDireX(Ball b){
@@ -131,8 +132,6 @@ public class PlayFragment extends Fragment{
 			if(b.getCurrY() <= 0 ) b.setAbsDireY(1);
 			
 		}
-		
-		
 		private void mPaint(ArrayList<Ball> ball){
 
 
@@ -213,12 +212,10 @@ public class PlayFragment extends Fragment{
 				b.setOffest(v);
 				int currX = b.getCurrX();
 				int currY = b.getCurrY();
-				canvas.drawText(second+":"+(100-count),w/2-120, h/4, p1);
+				canvas.drawText(second+":"+(100-count),w/2-120, h/7, p1);
 				
 				canvas.drawBitmap(b.getBall(), currX, currY, p);
-			    canvas.drawBitmap(bar.getBar(), bar.getCurrX(), bar.getCurrY(),p);
-				canvas.drawBitmap(pauseBitmap, w-pauseBitmap.getWidth(), h-pauseBitmap.getHeight(), p);
-				
+			    canvas.drawBitmap(bar.getBar(), bar.getCurrX(), bar.getCurrY(),p);				
 				
 				gameOver(b);
 			}
@@ -230,9 +227,16 @@ public class PlayFragment extends Fragment{
 				ball_produce.cancel();
 				ballNum.clear();
 				
+				Restart sf = new Restart(this.getActivity(),w,h); //用bundle进行fragment之间的参数传递 
+				Bundle bundle = new Bundle();
+                bundle.putString("second",second+"" );//second类型为int,将其变为string  
+                bundle.putString("count",count+"" );
+                sf.setArguments(bundle);  
+                
+
 				//死亡后跳转
 				FragmentTransaction transaction = getFragmentManager().beginTransaction();
-	            transaction.replace(R.id.container, new Restart(this.getActivity(),w,h));
+	            transaction.replace(R.id.container, sf);
 	            transaction.commit();
 				
 				return;
@@ -240,24 +244,52 @@ public class PlayFragment extends Fragment{
 			}
 		}
 		
+		
+		
 		private void gameOver(Ball b){
-			if(b.getCurrY() > 3*h/4){
+			if(b.getCurrY() > h-w*3/10){
 				//ball_produce.cancel();
 				//ballNum.clear();
 				isGameing = false;
 			}
 		}
-		private void gamePause(MotionEvent e){
-			RectF pause = new RectF(w-pauseBitmap.getWidth(), h-pauseBitmap.getHeight(),
-					w, h);
-			if(pause.contains(e.getRawX(), e.getRawY())){
-				if(!isStop){
-					isStop = true;
-				}
-				else{
-					isStop = false;
-				}
-			}
+		private void gamePause(){
+               
+			   if(isStop){
+				   isStop = false;
+				   isDoubleClick = false;
+				   game_control.setVisibility(View.GONE);
+				   game_control.setText("Tap to Continue");
+			   }
+			   else{
+				   isStop = true;
+				   isDoubleClick = false;
+				   game_control.setVisibility(View.VISIBLE);
+			   }
+			   if(!isGameing){
+				   isGameing = true;
+				   //启动开始运行
+				   ball_produce.schedule(task, newballtime, move_timeGap);
+			   }
+
+		}
+		private void stopBy2Click() {  
+		    Timer tStop = null;  
+		    if (isDoubleClick == false) {  
+		        isDoubleClick = true;
+		        tStop = new Timer();  
+		        tStop.schedule(new TimerTask() {  
+		            @Override  
+		            public void run() {  
+		                isDoubleClick = false;
+		            }  
+		        }, 200
+		        ); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务  
+		  
+		    } else {  
+		    	gamePause();
+		    	
+		    }  
 		}
 		
 private View.OnTouchListener touch = new View.OnTouchListener() {
@@ -271,11 +303,11 @@ private View.OnTouchListener touch = new View.OnTouchListener() {
 			     //设置bar的位置
 					switch (event.getAction()) {
 					case MotionEvent.ACTION_DOWN:
-						if(isGameing) gamePause(event);
+						if(isGameing) stopBy2Click();
 						break;
 
 					}
-					if(bar.getCurrY() >= 3*h/4 && y > 3*h/4)
+					if(y -120 > 3*h/4)
 				    	 bar.setLocation(x-75, 3*h/4);
 				    else bar.setLocation(x-75, y-120);
 			
@@ -283,14 +315,27 @@ private View.OnTouchListener touch = new View.OnTouchListener() {
 				return true;
 			}
 		};
-		
-		
+
+		private View.OnTouchListener l = new View.OnTouchListener() {
+
+			public boolean onTouch(View arg0, MotionEvent arg1) {
+				// TODO Auto-generated method stub
+				switch (arg1.getAction()) {
+				case MotionEvent.ACTION_DOWN:
+					gamePause();
+					
+					//break;
+				}
+				return false;
+				
+			}
+		};
+			
 		
 		class Factory extends TimerTask {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				if(!isStop) count--;
 				if(count == 0){
 					
 					//用此构造函数时考虑到随机产生的小球可能在最外面引起异常所以。。。宽度减一些
@@ -304,6 +349,7 @@ private View.OnTouchListener touch = new View.OnTouchListener() {
 					if(!isStop)
 					  mPaint(ballNum);
 				}
+				if(!isStop) count--;
 			}
 
 		}

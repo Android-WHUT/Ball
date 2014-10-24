@@ -7,6 +7,8 @@ import com.xuwen.ball.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 
 public class Ball {
 
@@ -95,6 +97,7 @@ public class Ball {
 	public void setdireY(int dire) {
 		direY *= dire;
 	}
+	
 
 	public void setOffest(int offest) {
 		currX += offest * direX;

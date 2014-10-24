@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@drawable/bg">
+    android:orientation="vertical" >
 
      <Button
             android:id="@+id/help"
             android:layout_width="56dp"
             android:layout_height="47dp"
             android:layout_marginTop="7dp"
+            android:layout_marginLeft="7dp"
             android:background="@drawable/button_help_new_2x" />
 
         <Button

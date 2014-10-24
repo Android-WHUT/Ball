@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bg" 
-    android:id="@+id/play">"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/play"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg"
+    android:gravity="top" >
     
     <!--
                      本版本属于测试版，后期再逐步完善  -->
     
-    <SurfaceView 
+    <SurfaceView
         android:id="@+id/geme_canvas"
-        android:alpha="0"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0" />
 
-</LinearLayout>
+   <TextView 
+        android:id="@+id/game_control"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/game_control"
+        android:textColor="#FFFFFF"
+        android:textSize="45sp"/>
+
+</RelativeLayout>
