@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bg" 
-    android:id="@+id/play">"
+    android:id="@+id/play">
     
     <!--
                      本版本属于测试版，后期再逐步完善  -->
@@ -14,6 +12,14 @@
         android:alpha="0"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <TextView 
+        android:id="@+id/game_control"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/game_control"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp"/>
     
 
-</LinearLayout>
+</RelativeLayout>
