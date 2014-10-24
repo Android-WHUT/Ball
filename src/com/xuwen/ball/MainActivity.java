@@ -2,6 +2,7 @@ package com.xuwen.ball;
 
 import com.xuwen.fragment.Start;
 
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -34,6 +35,5 @@ public class MainActivity extends FragmentActivity {
 		trans.replace(R.id.container, new Start(this,w,h)).commit();
 		
 	}
-	
 
 }
